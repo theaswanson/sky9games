@@ -1,13 +1,6 @@
-import "./App.css";
+import { Home } from "./Home";
+import { LandingPage } from "./LandingPage";
 
-const App = () => (
-  <section id="center">
-    <img src="/images/logo.png" className="logo" />
-    <div>
-      <h1>Fan site</h1>
-      <p>Coming soon!</p>
-    </div>
-  </section>
-);
+const App = () => (import.meta.env.DEV ? <Home /> : <LandingPage />);
 
 export default App;
