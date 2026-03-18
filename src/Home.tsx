@@ -1,12 +1,13 @@
+import { Typography } from "@mui/material";
 import "./Home.css";
 import { Navigation } from "./Navigation";
 
 export const Home = () => (
   <div>
     <Navigation />
-    <section id="center">
+    <section id='center'>
       <div>
-        <h1>Fan site</h1>
+        <Typography variant='h2'>Fan Site</Typography>
       </div>
     </section>
   </div>
