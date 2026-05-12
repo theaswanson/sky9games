@@ -1,4 +1,4 @@
-import Button from "@mui/material/Button";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
@@ -9,45 +9,53 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import Button from "@mui/material/Button";
 
 import { useState } from "react";
 
 const pages = ["Home", "Games", "About"];
 
-export const Navigation = () => {
+const Logo = () => <img src='/images/logo.png' style={{ height: "32px" }} />;
+
+const useNavigation = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+  return {
+    anchorElNav,
+    open: (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorElNav(event.currentTarget);
+    },
+    close: () => {
+      setAnchorElNav(null);
+    },
   };
+};
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const logo = <img src="/images/logo.png" style={{ height: "32px" }} />;
+export const Navigation = () => {
+  const { anchorElNav, open, close } = useNavigation();
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position='static'>
+      <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>{logo}</Box>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Logo />
+          </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
+              size='large'
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
+              onClick={open}
+              color='inherit'
             >
               <MenuIcon />
             </IconButton>
 
             <Menu
-              id="menu-appbar"
+              id='menu-appbar'
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
@@ -59,28 +67,30 @@ export const Navigation = () => {
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={close}
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={close}>
                   <Typography sx={{ textAlign: "center" }}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>{logo}</Box>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <Logo />
+          </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             {/* Hack to ensure mobile nav items are properly spaced */}
             <IconButton
               style={{ visibility: "hidden" }}
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color="inherit"
+              size='large'
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
+              color='inherit'
             >
               <MenuIcon />
             </IconButton>
@@ -90,7 +100,7 @@ export const Navigation = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={close}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
