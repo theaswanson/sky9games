@@ -1,0 +1,113 @@
+import MenuIcon from "@mui/icons-material/Menu";
+import {
+  AppBar,
+  Box,
+  Container,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import Button from "@mui/material/Button";
+
+import { useState } from "react";
+import { Logo } from "./Logo";
+
+const pages = ["Home", "Games", "About"];
+
+const useNavigation = () => {
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  return {
+    anchorElNav,
+    open: (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorElNav(event.currentTarget);
+    },
+    close: () => {
+      setAnchorElNav(null);
+    },
+  };
+};
+
+export const Navigation = () => {
+  const { anchorElNav, open, close } = useNavigation();
+
+  return (
+    <AppBar position='static'>
+      <Container maxWidth='xl'>
+        <Toolbar disableGutters>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Logo />
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size='large'
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
+              onClick={open}
+              color='inherit'
+            >
+              <MenuIcon />
+            </IconButton>
+
+            <Menu
+              id='menu-appbar'
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={close}
+              sx={{ display: { xs: "block", md: "none" } }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={close}>
+                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <Logo />
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            {/* Hack to ensure mobile nav items are properly spaced */}
+            <IconButton
+              style={{ visibility: "hidden" }}
+              size='large'
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
+              color='inherit'
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={close}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+};

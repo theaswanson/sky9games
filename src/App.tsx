@@ -1,13 +1,9 @@
-import "./App.css";
+import { Footer } from "./components/Footer";
+import { Home } from "./pages/Home";
 
-const App = () => (
-  <section id="center">
-    <img src="/images/logo.png" className="logo" />
-    <div>
-      <h1>Fan site</h1>
-      <p>Coming soon!</p>
-    </div>
-  </section>
+export const App = () => (
+  <>
+    <Home />
+    <Footer />
+  </>
 );
-
-export default App;
