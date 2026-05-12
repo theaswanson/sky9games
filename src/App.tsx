@@ -1,6 +1,16 @@
-import { Home } from "./Home";
-import { LandingPage } from "./LandingPage";
+import { Footer } from "./components/Footer";
+import { Home } from "./pages/Home";
+import { LandingPage } from "./pages/LandingPage";
 
-const App = () => (import.meta.env.DEV ? <Home /> : <LandingPage />);
+export const App = () => {
+  if (!import.meta.env.DEV) {
+    return <LandingPage />;
+  }
 
-export default App;
+  return (
+    <>
+      <Home />
+      <Footer />
+    </>
+  );
+};

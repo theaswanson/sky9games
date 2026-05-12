@@ -12,10 +12,9 @@ import {
 import Button from "@mui/material/Button";
 
 import { useState } from "react";
+import { Logo } from "./Logo";
 
 const pages = ["Home", "Games", "About"];
-
-const Logo = () => <img src='/images/logo.png' style={{ height: "32px" }} />;
 
 const useNavigation = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
