@@ -1,11 +1,12 @@
 import { Box, Stack } from "@mui/material";
 import { Logo } from "../../components/Logo";
 import { GameGrid } from "./GameGrid";
+import headerStyles from "./Header.module.css";
 
 const Header = () => (
   <Stack alignItems='center' sx={{ paddingTop: 8, paddingBottom: 8 }} gap={4}>
     <Box sx={{ width: { xs: "100%", sm: "500px", md: "600px", lg: "700px" } }}>
-      <Logo style={{ width: "100%" }} />
+      <Logo className={headerStyles.logo} />
     </Box>
   </Stack>
 );

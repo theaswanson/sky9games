@@ -1,3 +1,7 @@
-export const Logo = ({ style }: { style?: React.CSSProperties }) => (
-  <img src='/images/logo.png' style={style ?? { height: "32px" }} />
-);
+export const Logo = ({
+  className,
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) => <img className={className} src='/images/logo.png' style={style} />;
