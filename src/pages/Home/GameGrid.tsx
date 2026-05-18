@@ -5,17 +5,20 @@ const games = [
   {
     title: "Strike Force Heroes",
     image: "/images/games/sfh.png",
-    url: "https://strikeforceheroes.fandom.com/wiki/Strike_Force_Heroes_Wiki",
+    url: "/games/sfh",
+    isExternal: false,
   },
   {
     title: "Raze",
     image: "/images/games/raze3.png",
     url: "https://raze.fandom.com/wiki/Raze_Wiki",
+    isExternal: true,
   },
   {
     title: "Siegius",
     image: "/images/games/siegius.png",
     url: "https://siegius.fandom.com/wiki/Siegius_Wiki",
+    isExternal: true,
   },
 ];
 
@@ -32,7 +35,11 @@ export const GameGrid = () => (
             alignItems: "center",
           }}
         >
-          <GameCard image={game.image} url={game.url} />
+          <GameCard
+            image={game.image}
+            url={game.url}
+            isExternal={game.isExternal}
+          />
         </Grid>
       ))}
     </Grid>
