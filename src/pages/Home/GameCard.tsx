@@ -1,21 +1,5 @@
-import type { PropsWithChildren } from "react";
-import { NavLink } from "react-router";
-
-export const GameLink = ({
-  url,
-  isExternal,
-  children,
-}: PropsWithChildren<{
-  url: string;
-  isExternal: boolean;
-}>) =>
-  isExternal ? (
-    <a href={url} target="_blank" style={{ display: "contents" }}>
-      {children}
-    </a>
-  ) : (
-    <NavLink to={url}>{children}</NavLink>
-  );
+import { GameImage } from "./GameImage";
+import { GameLink } from "./GameLink";
 
 export const GameCard = ({
   image,
@@ -27,13 +11,6 @@ export const GameCard = ({
   isExternal: boolean;
 }) => (
   <GameLink url={url} isExternal={isExternal}>
-    <img
-      src={image}
-      style={{
-        width: "100%",
-        borderRadius: 8,
-        aspectRatio: 16 / 9,
-      }}
-    />
+    <GameImage src={image} />
   </GameLink>
 );
